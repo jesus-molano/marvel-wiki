@@ -3,7 +3,7 @@ import React from 'react'
 
 export const ComicsPage = () => {
   return (
-    <MainLayout>
+    <MainLayout title='Comics'>
       <p>Comics</p>
     </MainLayout>
   )
