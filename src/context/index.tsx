@@ -1,8 +1,6 @@
 import { CharactersContextType } from '@types'
 import { createContext } from 'react'
 
-
-
 const initialContext: CharactersContextType = {
   charactersData: {
     characters: null,

@@ -41,7 +41,6 @@ export const CharactersPage = () => {
       <button onClick={handleNextPage}>
         {'>'}
       </button>
-
     </MainLayout>
   )
 }
