@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CharactersData } from '@types'
-import { CharactersContext } from './index'
+import { CharactersContext } from './CharactersContext'
 import { getCharacters } from '@apis/getCharacters'
 
 interface Props {
