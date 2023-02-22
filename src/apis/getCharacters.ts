@@ -1,10 +1,13 @@
 import { useFetch } from "@hooks/useFetch"
-
-export const getCharacters = (limit: number = 10, offset: number = 0) => {
-  const url = 'https://akabab.github.io/superhero-api/api/all.json'
-  const {data, hasError, isLoading} = useFetch(url)
+const API_KEY = import.meta.env.VITE_MARVEL_API_KEY
+const API_URL = import.meta.env.VITE_MARVEL_API_URL
+export const getCharacters = (limit: number = 10, offset: number = 0, orderBy: string = 'name') => {
+  const url = `${API_URL}characters?orderBy=${orderBy}&limit=${limit}&offset=${offset}&apikey=${API_KEY}`
+  const { data, hasError, isLoading } = useFetch(url)
+  const characters = data?.data?.results
+  
   return {
-    characters: data?.slice(offset, offset + limit),
+    characters,
     hasError,
     isLoading
   }

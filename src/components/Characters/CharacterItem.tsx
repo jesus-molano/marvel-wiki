@@ -1,24 +1,17 @@
+import { Character } from '@types'
 import { Link } from 'react-router-dom'
-
-type Character = {
-  id: number
-  name: string
-  images: {
-    md: string
-  },
-  slug: string
-}
 
 interface Props {
   character: Character
 }
 
 export const CharacterItem = ({ character }:Props) => {
-  const { name, slug } = character
+  const { name, thumbnail } = character
+  const imgURL = `${thumbnail.path}.${thumbnail.extension}`
   return (
-    <Link to={`characters/${slug}`} className='character'>
+    <Link to={`/${name}`} className='character'>
       <p>{name}</p>
-      <img src={character.images.md} alt={name} loading='lazy' />
+      <img src={imgURL} alt={name} loading='lazy' />
     </Link>
   )
 }
