@@ -6,7 +6,7 @@ import { Navigate, useParams } from 'react-router-dom'
 export const CharacterDetailPage = () => {
   const { characterId } = useParams()
 
-  const getHeroById = (id: string) => {
+  const getCharacterById = (id: string) => {
     const { charactersData } = useContext(CharactersContext)
     if (!charactersData?.characters) return undefined
     return charactersData?.characters.find(
@@ -14,7 +14,7 @@ export const CharacterDetailPage = () => {
     )
   }
   if (!characterId) return <Navigate to='/' />
-  const character = getHeroById(characterId)
+  const character = getCharacterById(characterId)
   if (!character) return <Navigate to='/' />
 
   return (

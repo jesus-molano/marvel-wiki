@@ -6,10 +6,10 @@ interface Props {
 }
 
 export const ComicItem = ({ comic }:Props) => {
-  const { title, thumbnail } = comic
+  const {id, title, thumbnail } = comic
   const imgURL = `${thumbnail.path}.${thumbnail.extension}`
   return (
-    <Link to={`/${title}`} className='comic'>
+    <Link to={`/comics/${id}`} className='comic'>
       <p>{title}</p>
       <img src={imgURL} alt={title} loading='lazy' />
     </Link>
