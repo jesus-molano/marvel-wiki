@@ -25,8 +25,6 @@ export const CharactersPage = () => {
 
   const fewHeroes = data && data.slice(0, 10)
 
-  console.log('fewHeroes', fewHeroes)
-
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
