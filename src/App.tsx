@@ -1,17 +1,14 @@
-import { CharactersProvider } from '@context/CharactersProvider'
 import AppRouter from '@router/AppRouter'
+import { ProvidersLayout } from '@layouts/ProvidersLayout'
 import { AppLayout } from '@layouts/AppLayout'
-import { ComicsProvider } from '@context/ComicsProvider'
 
 function App () {
   return (
-    <CharactersProvider>
-      <ComicsProvider>
-        <AppLayout>
-          <AppRouter />
-        </AppLayout>
-      </ComicsProvider>
-    </CharactersProvider>
+    <ProvidersLayout>
+      <AppLayout>
+        <AppRouter />
+      </AppLayout>
+    </ProvidersLayout>
   )
 }
 
