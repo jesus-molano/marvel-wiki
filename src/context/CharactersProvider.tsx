@@ -1,27 +1,28 @@
-import { useFetch } from '@hooks/useFetch'
 import { useEffect, useState } from 'react'
 import { CharactersContext } from './index'
-import type { Character, CharactersContextType } from './index'
+import { getCharacters } from '@apis/getCharacters'
+import { CharactersData } from '@types'
 
 interface Props {
   children: React.ReactNode
 }
 
-const url = 'https://akabab.github.io/superhero-api/api/all.json'
-
-const initialState: CharactersContextType = {
+const initialState: CharactersData = {
   characters: null,
   hasError: null,
   isLoading: true
 }
 
+const limit = 10
+const offset = 0
+
 export const CharactersProvider = ({ children }: Props) => {
   const [charactersData, setCharactersData] = useState(initialState)
 
-  const response = useFetch(url)
-  const { data, hasError, isLoading } = response
-
-  const characters = data && (data as Character[]).slice(0, 10)
+  const { characters, hasError, isLoading }: CharactersData = getCharacters(
+    limit,
+    offset
+  )
 
   useEffect(() => {
     setCharactersData({
@@ -29,10 +30,10 @@ export const CharactersProvider = ({ children }: Props) => {
       isLoading,
       hasError
     })
-  }, [data])
+  }, [isLoading])
 
   return (
-    <CharactersContext.Provider value={charactersData}>
+    <CharactersContext.Provider value={{ charactersData, setCharactersData }}>
       {children}
     </CharactersContext.Provider>
   )

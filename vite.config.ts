@@ -14,6 +14,7 @@ export default defineConfig({
       '@router': '/src/router',
       '@types': '/src/types',
       '@assets': '/src/assets',
+      '@apis': '/src/apis',
       '@styles': '/src/styles',
     }
   }
