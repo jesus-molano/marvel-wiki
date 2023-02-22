@@ -56,11 +56,12 @@ enum CharacterType {
 interface CharactersData {
   characters: Character[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalCharacters: number
 }
 interface CharactersContextType {
   charactersData: CharactersData | null
-  offset: number
+  offset: number,
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
 }

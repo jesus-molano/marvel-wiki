@@ -16,6 +16,7 @@ export default defineConfig({
       '@assets': '/src/assets',
       '@apis': '/src/apis',
       '@styles': '/src/styles',
+      '@helpers': '/src/helpers',
     }
   }
 })

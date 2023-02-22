@@ -5,9 +5,11 @@ export const getCharacters = (limit: number = 10, offset: number = 0, orderBy: s
   const url = `${API_URL}characters?orderBy=${orderBy}&limit=${limit}&offset=${offset}&apikey=${API_KEY}`
   const { data, hasError, isLoading } = useFetch(url)
   const characters = data?.data?.results
-  
+  const totalCharacters = data?.data?.total
+
   return {
     characters,
+    totalCharacters,
     hasError,
     isLoading
   }
