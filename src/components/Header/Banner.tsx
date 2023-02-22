@@ -1,11 +1,10 @@
 import React from 'react'
-
 export const Banner = () => {
   return (
     <div className='banner'>
       <div className='banner-content'>
         <img
-          src='images/marvel-logo.webp'
+          src='/images/marvel-logo.webp'
           alt='marvel logo'
           className='marvel-logo'
         />

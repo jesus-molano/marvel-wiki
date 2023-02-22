@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { CharactersPage, ComicsPage, NotFoundPage, SeriesPage } from '@pages/index'
 import {CharacterDetailPage} from '@pages/CharacterDetailPage'
 import { ComicDetailPage } from '@pages/ComicDetailPage'
+import { SerieDetailPage } from '@pages/SerieDetailPage'
 const AppRouter = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const AppRouter = () => {
         <Route path='/comics' element={<ComicsPage />} />
         <Route path='/comics/:comicId' element={<ComicDetailPage />} />
         <Route path='/series' element={<SeriesPage />} />
+        <Route path='/series/:serieId' element={<SerieDetailPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </>

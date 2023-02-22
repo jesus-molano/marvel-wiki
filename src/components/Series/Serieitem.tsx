@@ -6,10 +6,10 @@ interface Props {
 }
 
 export const SerieItem = ({ serie }:Props) => {
-  const { title, thumbnail } = serie
+  const {id, title, thumbnail } = serie
   const imgURL = `${thumbnail.path}.${thumbnail.extension}`
   return (
-    <Link to={`/${title}`} className='comic'>
+    <Link to={`/series/${id}`} className='comic'>
       <p>{title}</p>
       <img src={imgURL} alt={title} loading='lazy' />
     </Link>

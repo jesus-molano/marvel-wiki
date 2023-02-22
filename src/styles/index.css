@@ -92,19 +92,19 @@ img {
 
 @font-face {
   font-family: "Poppins";
-  src: url("fonts/Poppins-Regular.woff2") format("woff2");
+  src: url("/fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("fonts/Poppins-Bold.woff2") format("woff2");
+  src: url("/fonts/Poppins-Bold.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Avengero";
-  src: url("fonts/Avengero-Regular.woff2") format("woff2");
+  src: url("/fonts/Avengero-Regular.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -242,7 +242,7 @@ header {
   gap: 2.5rem;
 }
 header .banner {
-  background-image: url("images/banner.webp");
+  background-image: url("/images/banner.webp");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
