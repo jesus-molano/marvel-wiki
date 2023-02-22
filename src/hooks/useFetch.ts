@@ -1,4 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
+
+interface State {
+  isLoading: boolean
+  hasError: string | null
+  data: any
+}
 
 const initialState = {
   isLoading: true,
@@ -6,22 +12,30 @@ const initialState = {
   data: null
 }
 export const useFetch = (url: string) => {
-  const [state, setState] = useState(initialState)
-  
+  const [state, setState] = useState<State>(initialState)
+
   const getFetch = async () => {
     setState({
       ...state,
       isLoading: true
     })
-
-    const response = await fetch(url)
-    const data = await response.json()
-
-    setState({
-      data,
-      isLoading: false,
-      hasError: null
-    })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      setState({
+        data,
+        isLoading: false,
+        hasError: null
+      })
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setState({
+          data: null,
+          isLoading: false,
+          hasError: error.message
+        })
+      }
+    }
   }
 
   useEffect(() => {
