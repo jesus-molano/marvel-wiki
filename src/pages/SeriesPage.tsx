@@ -29,7 +29,7 @@ export const SeriesPage = () => {
 
   return (
     <MainLayout title='Series'>
-      <div className='series-container'>
+      <div className='comics-container'>
         {seriesData?.isLoading && <div>Loading...</div>}
         {seriesData?.hasError && <div>Something went wrong</div>}
         {seriesData?.series &&
