@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { CharacterItem } from '@components/Characters/CharacterItem'
-import { CharactersContext } from '@context/index'
+import { CharactersContext } from '@context/CharactersContext'
 import { MainLayout } from '@layouts/MainLayout'
 
 export const CharactersPage = () => {

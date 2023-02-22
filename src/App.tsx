@@ -1,14 +1,16 @@
-import { CharactersProvider } from "@context/CharactersProvider"
-import AppRouter from "@router/AppRouter"
-import { AppLayout } from "@layouts/AppLayout"
+import { CharactersProvider } from '@context/CharactersProvider'
+import AppRouter from '@router/AppRouter'
+import { AppLayout } from '@layouts/AppLayout'
+import { ComicsProvider } from '@context/ComicsProvider'
 
-
-function App() {
+function App () {
   return (
     <CharactersProvider>
-    <AppLayout>
-      <AppRouter />
-      </AppLayout>
+      <ComicsProvider>
+        <AppLayout>
+          <AppRouter />
+        </AppLayout>
+      </ComicsProvider>
     </CharactersProvider>
   )
 }
