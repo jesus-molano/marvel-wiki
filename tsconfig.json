@@ -25,6 +25,7 @@
       "@router/*": ["src/router/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
+      "@apis/*": ["src/apis/*"],
       "@types": ["src/types"],
 
     }

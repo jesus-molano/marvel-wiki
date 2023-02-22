@@ -1,40 +1,52 @@
+import { useContext, useEffect, useState } from 'react'
 import { CharacterItem } from '@components/Characters/CharacterItem'
-import { useFetch } from '@hooks/useFetch'
+import { CharactersContext } from '@context/index'
 import { MainLayout } from '@layouts/MainLayout'
-
-const url = 'https://akabab.github.io/superhero-api/api/all.json'
-
-interface FetchResponse {
-  data: Character[] | null
-  hasError: string | null
-  isLoading: boolean
-}
-
-type Character = {
-  id: number
-  name: string
-  images: {
-    md: string
-  },
-  slug: string
-}
+import { getCharacters } from '@apis/getCharacters'
 
 export const CharactersPage = () => {
-  const response: FetchResponse = useFetch(url)
-  const { data, hasError, isLoading } = response
+  const total = 40
+  const limit = 10
+  const [offset, setOffset] = useState(0)
+  const { charactersData, setCharactersData } = useContext(CharactersContext)
+  
 
-  const fewHeroes = data && data.slice(0, 10)
+  const paginatedCharacters = getCharacters(limit, offset)
+  const handleNextPage = () => {
+    if(offset >= total) return
+    setOffset(offset + 10)
+  }
+  const handlePrevPage = () => {
+    if(offset <= 0) return
+    setOffset(offset - 10)
+  }
+
+  useEffect(() => {
+    setCharactersData({
+      characters: paginatedCharacters.characters,
+      isLoading: paginatedCharacters.isLoading,
+      hasError: paginatedCharacters.hasError
+    })
+  }, [offset])
+
 
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
-        {isLoading && <div>Loading...</div>}
-        {hasError && <div>Something went wrong</div>}
-        {fewHeroes &&
-          fewHeroes.map(character => (
+        {charactersData?.isLoading && <div>Loading...</div>}
+        {charactersData?.hasError && <div>Something went wrong</div>}
+        {charactersData?.characters &&
+          charactersData.characters.map(character => (
             <CharacterItem key={character.id} character={character} />
           ))}
       </div>
+      <button onClick={handlePrevPage}>
+      {'<'}
+      </button>
+      <button onClick={handleNextPage}>
+        {'>'}
+      </button>
+
     </MainLayout>
   )
 }
