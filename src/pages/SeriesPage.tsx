@@ -2,7 +2,7 @@ import { MainLayout } from '@layouts/MainLayout'
 
 export const SeriesPage = () => {
   return (
-    <MainLayout>
+    <MainLayout title='Series'>
       <p>Series</p>
     </MainLayout>
   )

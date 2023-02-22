@@ -1,3 +1,4 @@
+import { CharacterItem } from '@components/Characters/CharacterItem'
 import { useFetch } from '@hooks/useFetch'
 import { MainLayout } from '@layouts/MainLayout'
 
@@ -14,7 +15,8 @@ type Character = {
   name: string
   images: {
     md: string
-  }
+  },
+  slug: string
 }
 
 export const CharactersPage = () => {
@@ -23,8 +25,6 @@ export const CharactersPage = () => {
 
   const fewHeroes = data && data.slice(0, 10)
 
-  console.log('characters page render')
-
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
@@ -32,10 +32,7 @@ export const CharactersPage = () => {
         {hasError && <div>Something went wrong</div>}
         {fewHeroes &&
           fewHeroes.map(character => (
-            <div key={character.id} className='character'>
-              <p>{character.name}</p>
-              <img src={character.images.md} alt={character.name} />
-            </div>
+            <CharacterItem key={character.id} character={character} />
           ))}
       </div>
     </MainLayout>
