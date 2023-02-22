@@ -15,5 +15,7 @@ export interface CharactersData {
 
 export interface CharactersContextType {
   charactersData: CharactersData | null
-  setCharactersData: React.Dispatch<React.SetStateAction<CharactersData>>;
+  offset: number
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
