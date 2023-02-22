@@ -4,7 +4,7 @@ import { MainLayout } from '@layouts/MainLayout'
 import { useContext } from 'react'
 
 export const ComicsPage = () => {
-  const total = 40
+  const total = 80
 
   const { comicsData, offset, setOffset } = useContext(ComicsContext)
 
