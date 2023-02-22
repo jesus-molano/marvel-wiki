@@ -175,6 +175,66 @@ img {
   gap: 3rem 1rem;
 }
 
+.character-detail {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.character-detail h3 {
+  color: #F2AC57;
+}
+.character-detail img {
+  height: 480px;
+  width: min(100%, 400px);
+  clip-path: polygon(0 0, 76% 0, 100% 11%, 100% 100%, 25% 100%, 0 87%);
+  border-radius: 6px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  object-position: center;
+}
+.character-detail .character-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 500px;
+  background-color: #3D3959;
+  border-radius: 6px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+}
+.character-detail .character-detail-info .character-description {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.character-detail .character-detail-info .character-description p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.character-detail .character-detail-info .character-comics,
+.character-detail .character-detail-info .character-series {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.character-detail .character-detail-info .character-comics ul,
+.character-detail .character-detail-info .character-series ul {
+  list-style: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.character-detail .character-detail-info .character-comics {
+  background-color: #706C8C;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  padding: 4rem 2rem;
+  color: #ffffff;
+}
+
 header {
   display: flex;
   flex-direction: column;
