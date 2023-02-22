@@ -9,10 +9,10 @@ export const CharactersPage = () => {
   const limit = 10
   const [offset, setOffset] = useState(0)
   const { charactersData, setCharactersData } = useContext(CharactersContext)
+  
 
-  const { characters, isLoading, hasError } = getCharacters(limit, offset)
+  const paginatedCharacters = getCharacters(limit, offset)
   const handleNextPage = () => {
-    
     if(offset >= total) return
     setOffset(offset + 10)
   }
@@ -23,9 +23,9 @@ export const CharactersPage = () => {
 
   useEffect(() => {
     setCharactersData({
-      characters,
-      isLoading,
-      hasError
+      characters: paginatedCharacters.characters,
+      isLoading: paginatedCharacters.isLoading,
+      hasError: paginatedCharacters.hasError
     })
   }, [offset])
 
@@ -33,10 +33,10 @@ export const CharactersPage = () => {
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
-        {isLoading && <div>Loading...</div>}
-        {hasError && <div>Something went wrong</div>}
-        {characters &&
-          characters.map(character => (
+        {charactersData?.isLoading && <div>Loading...</div>}
+        {charactersData?.hasError && <div>Something went wrong</div>}
+        {charactersData?.characters &&
+          charactersData.characters.map(character => (
             <CharacterItem key={character.id} character={character} />
           ))}
       </div>
