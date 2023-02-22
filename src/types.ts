@@ -1,74 +1,72 @@
-// CHARACTERS TYPES
-export interface Character {
+interface Thumbnail {
+  path:      string;
+  extension: string;
+}
+
+interface URL {
+  type: string;
+  url:  string;
+}
+
+// CHARACTERS TYPES ////////////////////////
+interface Character {
   id:          number;
   name:        string;
   description: string;
   modified:    string;
-  thumbnail:   CharacterThumbnail;
+  thumbnail:   Thumbnail;
   resourceURI: string;
   comics:      CharacterComics;
   series:      CharacterComics;
   stories:     CharacterStories;
   events:      CharacterComics;
-  urls:        CharacterURL[];
+  urls:        URL[];
 }
 
-export interface CharacterComics {
+interface CharacterComics {
   available:     number;
   collectionURI: string;
   items:         CharacterItem[];
   returned:      number;
 }
 
-export interface CharacterItem {
+interface CharacterItem {
   resourceURI: string;
   name:        string;
 }
 
-export interface CharacterStories {
+interface CharacterStories {
   available:     number;
   collectionURI: string;
   items:         CharacterStoriesItem[];
   returned:      number;
 }
 
-export interface CharacterStoriesItem {
+interface CharacterStoriesItem {
   resourceURI: string;
   name:        string;
   type:        CharacterType;
 }
 
-export enum CharacterType {
+enum CharacterType {
   Cover = "cover",
   InteriorStory = "interiorStory",
 }
 
-export interface CharacterThumbnail {
-  path:      string;
-  extension: string;
-}
-
-export interface CharacterURL {
-  type: string;
-  url:  string;
-}
-
-
-export interface CharactersData {
+interface CharactersData {
   characters: Character[] | null
   hasError: string | null
   isLoading: boolean
 }
-export interface CharactersContextType {
+interface CharactersContextType {
   charactersData: CharactersData | null
   offset: number
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
 
-// COMICS TYPES
-
-export interface Comic {
+// COMICS TYPES ////////////////////////
+interface Comic {
   id:                 number;
   digitalId:          number;
   title:              string;
@@ -85,68 +83,109 @@ export interface Comic {
   pageCount:          number;
   textObjects:        any[];
   resourceURI:        string;
-  urls:               ComicURL[];
+  urls:               URL[];
   series:             ComicSeries;
   variants:           any[];
   collections:        any[];
   collectedIssues:    any[];
   dates:              ComicDateElement[];
   prices:             ComicPrice[];
-  thumbnail:          ComicThumbnail;
-  images:             ComicThumbnail[];
+  thumbnail:          Thumbnail;
+  images:             Thumbnail[];
   creators:           ComicCharacters;
   characters:         ComicCharacters;
   stories:            ComicCharacters;
   events:             ComicCharacters;
 }
 
-export interface ComicCharacters {
+interface ComicCharacters {
   available:     number;
   collectionURI: string;
   items:         ComicItem[];
   returned:      number;
 }
 
-export interface ComicItem {
+interface ComicItem {
   resourceURI: string;
   name:        string;
   role?:       string;
   type?:       string;
 }
 
-export interface ComicDateElement {
+interface ComicDateElement {
   type: string;
   date: string;
 }
 
-export interface ComicThumbnail {
-  path:      string;
-  extension: string;
-}
-
-export interface ComicPrice {
+interface ComicPrice {
   type:  string;
   price: number;
 }
 
-export interface ComicSeries {
+interface ComicSeries {
   resourceURI: string;
   name:        string;
 }
 
-export interface ComicURL {
-  type: string;
-  url:  string;
-}
-
-export interface ComicsData {
+interface ComicsData {
   comics: Comic[] | null
   hasError: string | null
   isLoading: boolean
 }
-export interface ComicsContextType {
+interface ComicsContextType {
   comicsData: ComicsData | null
   offset: number
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
+
+
+// SERIES TYPES //////////////////////
+interface Serie {
+  id:          number;
+  title:       string;
+  description: null;
+  resourceURI: string;
+  urls:        URL[];
+  startYear:   number;
+  endYear:     number;
+  rating:      string;
+  type:        string;
+  modified:    string;
+  thumbnail:   Thumbnail;
+  creators:    SerieCharacters;
+  SerieCharacters:  SerieCharacters;
+  stories:     SerieCharacters;
+  comics:      SerieCharacters;
+  events:      SerieCharacters;
+  next:        null;
+  previous:    null;
+}
+
+interface SerieCharacters {
+  available:     number;
+  collectionURI: string;
+  items:         SerieItem[];
+  returned:      number;
+}
+
+interface SerieItem {
+  resourceURI: string;
+  name:        string;
+  role?:       string;
+  type?:       string;
+}
+
+interface SeriesData {
+  series: Serie[] | null
+  hasError: string | null
+  isLoading: boolean
+}
+interface SeriesContextType {
+  seriesData: SeriesData | null
+  offset: number
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export type { Character, CharactersData, CharactersContextType, Comic, ComicsData, ComicsContextType, Serie, SeriesData, SeriesContextType}
