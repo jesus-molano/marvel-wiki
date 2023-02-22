@@ -1,14 +1,12 @@
+import { useContext } from 'react'
 import { CharacterItem } from '@components/Characters/CharacterItem'
 import { CharactersContext } from '@context/index'
 import { MainLayout } from '@layouts/MainLayout'
-import { useContext } from 'react'
-
-
-
 
 export const CharactersPage = () => {
-
-  const { characters, hasError, isLoading } = useContext(CharactersContext)
+  const { charactersData } = useContext(CharactersContext)
+  if (!charactersData) return null
+  const { characters, hasError, isLoading } = charactersData
 
   return (
     <MainLayout title='Characters'>
