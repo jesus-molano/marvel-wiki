@@ -1,34 +1,29 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { CharacterItem } from '@components/Characters/CharacterItem'
 import { CharactersContext } from '@context/index'
 import { MainLayout } from '@layouts/MainLayout'
-import { getCharacters } from '@apis/getCharacters'
 
 export const CharactersPage = () => {
   const total = 40
-  const limit = 10
-  const [offset, setOffset] = useState(0)
-  const { charactersData, setCharactersData } = useContext(CharactersContext)
+  const { charactersData, offset, setOffset } = useContext(CharactersContext)
   
-
-  const paginatedCharacters = getCharacters(limit, offset)
   const handleNextPage = () => {
-    if(offset >= total) return
-    setOffset(offset + 10)
+    if(offset > total) return
+    setOffset((currentOffset) => {
+      const newOffset = currentOffset + 10
+      sessionStorage.setItem('offset-characters', newOffset.toString())
+      return newOffset
+    })
   }
   const handlePrevPage = () => {
     if(offset <= 0) return
-    setOffset(offset - 10)
-  }
-
-  useEffect(() => {
-    setCharactersData({
-      characters: paginatedCharacters.characters,
-      isLoading: paginatedCharacters.isLoading,
-      hasError: paginatedCharacters.hasError
+    setOffset((currentOffset) => {
+      const newOffset = currentOffset - 10
+      sessionStorage.setItem('offset-characters', newOffset.toString())
+      return newOffset
     })
-  }, [offset])
-
+    
+  }
 
   return (
     <MainLayout title='Characters'>

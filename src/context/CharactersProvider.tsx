@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react'
+import { CharactersData } from '@types'
 import { CharactersContext } from './index'
 import { getCharacters } from '@apis/getCharacters'
-import { CharactersData } from '@types'
 
 interface Props {
   children: React.ReactNode
 }
 
-const initialState: CharactersData = {
+const initialCharactersData: CharactersData = {
   characters: null,
   hasError: null,
   isLoading: true
 }
 
-const limit = 10
-const offset = 0
+const offsetStorage = sessionStorage.getItem('offset-characters')
+const initialOffset = offsetStorage ? parseInt(offsetStorage) : 0
 
 export const CharactersProvider = ({ children }: Props) => {
-  const [charactersData, setCharactersData] = useState(initialState)
+  const [charactersData, setCharactersData] = useState(initialCharactersData)
+  const [offset, setOffset] = useState(initialOffset)
+  const [limit, setLimit] = useState(10)
 
   const { characters, hasError, isLoading }: CharactersData = getCharacters(
     limit,
@@ -30,10 +32,10 @@ export const CharactersProvider = ({ children }: Props) => {
       isLoading,
       hasError
     })
-  }, [isLoading])
+  }, [offset, isLoading])
 
   return (
-    <CharactersContext.Provider value={{ charactersData, setCharactersData }}>
+    <CharactersContext.Provider value={{ charactersData, offset, setOffset, setLimit }}>
       {children}
     </CharactersContext.Provider>
   )
