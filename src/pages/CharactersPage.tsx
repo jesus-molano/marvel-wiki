@@ -28,7 +28,7 @@ export const CharactersPage = () => {
       {characters && (
         <Pagination
           totalItems={totalCharacters}
-          itemsPerPage={10}
+          itemsPerPage={30}
           setOffset={setOffset}
           name='characters'
         />

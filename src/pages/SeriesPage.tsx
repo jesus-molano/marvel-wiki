@@ -28,7 +28,7 @@ export const SeriesPage = () => {
           currentPage={offset}
           setOffset={setOffset}
           totalItems={totalSeries}
-          itemsPerPage={16}
+          itemsPerPage={32}
         />
       )}
     </MainLayout>

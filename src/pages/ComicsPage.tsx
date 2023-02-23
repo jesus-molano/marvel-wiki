@@ -28,7 +28,7 @@ export const ComicsPage = () => {
           currentPage={offset}
           setOffset={setOffset}
           totalItems={totalComics}
-          itemsPerPage={16}
+          itemsPerPage={32}
         />
       )}
     </MainLayout>

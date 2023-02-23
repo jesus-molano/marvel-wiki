@@ -1,23 +1,37 @@
 @import '../base/variables';
 
 header {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 2.5rem;
-  
+
   .banner {
-    background-image: url('/images/banner.webp');
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: $size-banner;
     position: relative;
-    width: 100%;
 
-
-    .banner-content{
+    .banner-image {
+      background-image: url('/images/banner.webp');
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: $size-banner;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 50%,
+        black 50%,
+        transparent
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 50%,
+        black 50%,
+        transparent
+      );
+    }
+    .banner-logo {
       align-items: center;
       display: flex;
       flex-direction: column;
@@ -27,24 +41,29 @@ header {
       top: calc($size-banner - 30%);
       left: 50%;
       transform: translate(-50%);
+      z-index: 10;
 
       .marvel-logo {
-        width:4rem;
+        width: 4rem;
       }
-  
-      .banner-title{
+
+      .banner-title {
         -moz-background-clip: text;
         -webkit-background-clip: text;
         background-clip: text;
-        background-image: linear-gradient(to right, $color-primary, $color-emphasize);
+        background-image: linear-gradient(
+          to right,
+          $color-primary,
+          $color-emphasize
+        );
         color: transparent;
         font-family: $font-title;
-        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 8vw, 2.5rem);
         padding: 0 1rem;
         text-align: center;
+        z-index: 10;
       }
     }
-
   }
 
   .nav-bar {
@@ -52,7 +71,7 @@ header {
     justify-content: center;
     align-items: center;
 
-    ul{
+    ul {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
@@ -76,6 +95,26 @@ header {
       color: $color-emphasize;
       text-decoration: underline;
       font-weight: 600;
+    }
+  }
+
+}
+@media(min-width: 768px) {
+  header {
+    .banner {
+      .banner-image {
+        height: $size-banner * 1.5;
+      }
+      .banner-logo {
+        top: calc($size-banner);
+        .banner-title {
+          font-size: 3rem;
+        }
+      }
+    }
+    .nav-bar {
+      justify-content: end;
+      margin-top: 2rem;
     }
   }
 }

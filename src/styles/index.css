@@ -1,6 +1,8 @@
 :root {
   background-color: #000000;
-  background-image: linear-gradient(180deg, #000000 0%, #3D3959 100%);
+  background: -moz-conic-gradient(from 180deg at 50% 50%, #3D3959, #000000, #000000, #3D3959);
+  background: -webkit-conic-gradient(from 180deg at 50% 50%, #3D3959, #000000, #000000, #3D3959);
+  background: conic-gradient(from 180deg at 50% 50%, #3D3959, #000000, #000000, #3D3959);
   background-size: contain;
   background-repeat: no-repeat;
   line-height: 1.5;
@@ -23,19 +25,20 @@
 
 html {
   min-height: 100vh;
+  background-color: #000000;
 }
 
 body {
   min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 #root {
   min-height: 100vh;
-}
-
-#root {
   display: flex;
   flex-direction: column;
+  gap: 3rem;
 }
 
 a {
@@ -117,10 +120,11 @@ img {
   font-style: normal;
 }
 .main-container {
-  margin-top: 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 .main-container section {
   flex: 1;
@@ -129,6 +133,9 @@ img {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+.main-container section h2 {
+  padding-left: 1rem;
 }
 
 .characters-container {
@@ -139,41 +146,6 @@ img {
   align-items: center;
   flex-wrap: wrap;
   gap: 3rem 1rem;
-}
-.characters-container .character {
-  overflow: hidden;
-  position: relative;
-  width: min(100%, 400px);
-  height: 255px;
-  border-radius: 6px;
-}
-.characters-container .character::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0px -90px 20px rgba(0, 0, 0, 0.68);
-  z-index: 2;
-}
-.characters-container .character p {
-  font-family: "Avengero", sans-serif;
-  color: #ffffff;
-  text-align: center;
-  font-size: 2rem;
-  line-height: 1.5;
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-}
-.characters-container .character img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 
 .comics-container {
@@ -264,8 +236,36 @@ img {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
-  max-width: 800px;
+  width: min(100%, 800px);
+}
+.comic-detail .comic-description h3 {
+  color: #F2AC57;
+  font-family: "Avengero", sans-serif;
+}
+.comic-detail .comic-description p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.comic-detail {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.comic-detail img {
+  max-height: 480px;
+  height: auto;
+  width: min(100%, 400px);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+.comic-detail .comic-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(100%, 400px);
 }
 .comic-detail .comic-description h3 {
   color: #F2AC57;
@@ -300,15 +300,19 @@ header {
   gap: 2.5rem;
 }
 header .banner {
+  position: relative;
+}
+header .banner .banner-image {
   background-image: url("/images/banner.webp");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   height: 180px;
-  position: relative;
   width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 50%, black 50%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 50%, black 50%, transparent);
 }
-header .banner .banner-content {
+header .banner .banner-logo {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -318,20 +322,22 @@ header .banner .banner-content {
   top: calc(180px - 30%);
   left: 50%;
   transform: translate(-50%);
+  z-index: 10;
 }
-header .banner .banner-content .marvel-logo {
+header .banner .banner-logo .marvel-logo {
   width: 4rem;
 }
-header .banner .banner-content .banner-title {
+header .banner .banner-logo .banner-title {
   -moz-background-clip: text;
   -webkit-background-clip: text;
   background-clip: text;
   background-image: linear-gradient(to right, #3D3959, #F2AC57);
   color: transparent;
   font-family: "Avengero", sans-serif;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 8vw, 2.5rem);
   padding: 0 1rem;
   text-align: center;
+  z-index: 10;
 }
 header .nav-bar {
   display: flex;
@@ -362,37 +368,121 @@ header .nav-bar .active-link {
   font-weight: 600;
 }
 
+@media (min-width: 768px) {
+  header .banner .banner-image {
+    height: 270px;
+  }
+  header .banner .banner-logo {
+    top: 180px;
+  }
+  header .banner .banner-logo .banner-title {
+    font-size: 3rem;
+  }
+  header .nav-bar {
+    justify-content: end;
+    margin-top: 2rem;
+  }
+}
 footer {
   align-self: flex-end;
+  flex-wrap: wrap;
   justify-self: end;
-  height: 5rem;
   width: 100%;
   display: flex;
-  justify-content: end;
-  align-items: end;
-  background-image: linear-gradient(0deg, #000000, transparent);
+  justify-content: center;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 footer small {
   padding: 0.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  footer {
+    justify-content: space-between;
+  }
 }
 
+.character {
+  overflow: hidden;
+  position: relative;
+  width: min(100%, 400px);
+  height: 255px;
+  border-radius: 6px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.character::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0px -90px 20px rgba(0, 0, 0, 0.68);
+  z-index: 2;
+}
+.character:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 5px #F2B6B6;
+}
+.character p {
+  font-family: "Avengero", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.5;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.character img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 768px) {
+  .character p {
+    font-size: 1.5rem;
+  }
+}
 .comic {
   position: relative;
   color: #ffffff;
   width: 10rem;
   height: 15rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .comic:hover p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   backdrop-filter: blur(5px);
   --webkit-backdrop-filter: blur(5px);
   --moz-backdrop-filter: blur(5px);
   opacity: 1;
-  width: 100%;
-  height: 100%;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3137254902);
 }
@@ -400,8 +490,15 @@ footer small {
   position: absolute;
   bottom: 50%;
   left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, 50%);
   opacity: 0;
+  transition: backdrop-filter 0.3s ease-in-out, --webkit-backdrop-filter 0.3s ease-in-out, --moz-backdrop-filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 .comic img {
   width: 100%;

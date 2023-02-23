@@ -20,7 +20,7 @@ const initialOffset = offsetStorage ? parseInt(offsetStorage) : 0
 export const SeriesProvider = ({ children }: Props) => {
   const [seriesData, setSeriesData] = useState(initialComicsData)
   const [offset, setOffset] = useState(initialOffset)
-  const [limit, setLimit] = useState(16)
+  const [limit, setLimit] = useState(32)
 
   const { series, hasError, isLoading, totalSeries }: SeriesData = getSeries(
     limit,

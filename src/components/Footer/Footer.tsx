@@ -8,6 +8,10 @@ export function Footer() {
   const { attributionText } = charactersData
   return (
     <footer>
+      <a href="https://github.com/jesus-molano/marvel-wiki" target='_blank' rel="noreferrer" >
+        <img src="/images/github.svg" alt="github" />
+        <small>Github</small>
+      </a>
       <small>{attributionText}</small>
     </footer>
   )
