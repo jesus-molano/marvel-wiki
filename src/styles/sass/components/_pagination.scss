@@ -2,9 +2,17 @@
 
 .pagination{
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   gap: 0.4rem;
   justify-content: center;
+  align-items: center;
+
+  .pagination-numbers{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
 
   button{
     background-color: $color-secondary;

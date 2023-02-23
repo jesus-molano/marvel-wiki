@@ -197,7 +197,8 @@ img {
   font-family: "Avengero", sans-serif;
 }
 .character-detail img {
-  height: 480px;
+  max-height: 480px;
+  height: auto;
   width: min(100%, 400px);
   clip-path: polygon(0 0, 76% 0, 100% 11%, 100% 100%, 25% 100%, 0 87%);
   border-radius: 6px;
@@ -245,6 +246,36 @@ img {
   clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
   padding: 6rem 2rem 4rem 2rem;
   color: #ffffff;
+}
+
+.comic-detail {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.comic-detail img {
+  max-height: 480px;
+  height: auto;
+  width: min(100%, 400px);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+.comic-detail .comic-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+.comic-detail .comic-description h3 {
+  color: #F2AC57;
+  font-family: "Avengero", sans-serif;
+}
+.comic-detail .comic-description p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .page-not-found {
@@ -302,8 +333,15 @@ header .banner .banner-content .banner-title {
   padding: 0 1rem;
   text-align: center;
 }
+header .nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 header .nav-bar ul {
   display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   list-style: none;
@@ -311,6 +349,7 @@ header .nav-bar ul {
   width: min(100%, 400px);
 }
 header .nav-bar .nav-link {
+  font-size: 1.2rem;
   color: #ffffff;
   font-weight: 700;
 }
@@ -372,9 +411,16 @@ footer small {
 
 .pagination {
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   gap: 0.4rem;
   justify-content: center;
+  align-items: center;
+}
+.pagination .pagination-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
 }
 .pagination button {
   background-color: #706C8C;

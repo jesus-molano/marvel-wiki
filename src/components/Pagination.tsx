@@ -8,13 +8,7 @@ interface Props {
   name: "comics" | "characters" |  "series"
 }
 
-function Pagination ({
-  totalItems = 50,
-  itemsPerPage = 10,
-  currentPage: initialPage = 1,
-  setOffset,
-  name
-}: Props) {
+function Pagination ({totalItems = 50,itemsPerPage = 10,currentPage: initialPage = 1,setOffset,name}: Props) {
   const [currentPage, setCurrentPage] = useState(initialPage)
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const offsetSessionStorage = sessionStorage.getItem(`offset-${name}`)
@@ -60,23 +54,21 @@ function Pagination ({
       >
         {'<<'}
       </button>
-      {Array.from({ length: totalPages }, (_, index) => {
-        const page = index + 1
-        const isActive = page === currentPage
-        if (page >= startPage && page <= endPage) {
-          return (
-            <button
-              key={page}
-              onClick={() => handleClick(page)}
-              className={isActive ? 'active' : ''}
-            >
-              {page}
-            </button>
-          )
-        } else {
-          return null
-        }
-      })}
+      <div className='pagination-numbers'>
+        {Array.from({ length: totalPages }, (_, index) => {
+          const page = index + 1
+          const isActive = page === currentPage
+          if (page >= startPage && page <= endPage) {
+            return (
+              <button key={page} onClick={() => handleClick(page)} className={isActive ? 'active' : ''}>
+                {page}
+              </button>
+            )
+          } else {
+            return null
+          }
+        })}
+      </div>
       <button
         onClick={() => handleClick(totalPages)}
         disabled={currentPage === totalPages}
