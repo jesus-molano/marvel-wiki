@@ -5,7 +5,8 @@ const initialContext: SeriesContextType = {
   seriesData: {
     series: null,
     hasError: null,
-    isLoading: true
+    isLoading: true,
+    totalSeries: 0
   },
   offset: 0,
   setOffset: () => { },
