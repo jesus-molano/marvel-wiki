@@ -10,7 +10,8 @@ interface Props {
 const initialComicsData: SeriesData = {
   series: null,
   hasError: null,
-  isLoading: true
+  isLoading: true,
+  totalSeries: 0
 }
 
 const offsetStorage = sessionStorage.getItem('offset-comics')
@@ -21,7 +22,7 @@ export const SeriesProvider = ({ children }: Props) => {
   const [offset, setOffset] = useState(initialOffset)
   const [limit, setLimit] = useState(16)
 
-  const { series, hasError, isLoading }: SeriesData = getSeries(
+  const { series, hasError, isLoading, totalSeries }: SeriesData = getSeries(
     limit,
     offset
   )
@@ -30,7 +31,8 @@ export const SeriesProvider = ({ children }: Props) => {
     setSeriesData({
       series,
       isLoading,
-      hasError
+      hasError,
+      totalSeries
     })
   }, [offset, isLoading])
 

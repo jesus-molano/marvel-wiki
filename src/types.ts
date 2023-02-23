@@ -181,7 +181,8 @@ interface SerieItem {
 interface SeriesData {
   series: Serie[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalSeries: number
 }
 interface SeriesContextType {
   seriesData: SeriesData | null
