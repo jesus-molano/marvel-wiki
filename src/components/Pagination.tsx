@@ -5,7 +5,7 @@ interface Props {
   itemsPerPage: number
   currentPage?: number
   setOffset: React.Dispatch<React.SetStateAction<number>>
-  name: string
+  name: "comics" | "characters" |  "series"
 }
 
 function Pagination ({

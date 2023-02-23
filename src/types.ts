@@ -131,7 +131,8 @@ interface ComicSeries {
 interface ComicsData {
   comics: Comic[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalComics: number
 }
 interface ComicsContextType {
   comicsData: ComicsData | null

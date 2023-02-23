@@ -1,47 +1,26 @@
 import { ComicItem } from '@components/Comics/ComicItem'
+import Pagination from '@components/Pagination'
 import { ComicsContext } from '@context/ComicsContext'
 import { MainLayout } from '@layouts/MainLayout'
 import { useContext } from 'react'
 
 export const ComicsPage = () => {
-  const total = 80
-
   const { comicsData, offset, setOffset } = useContext(ComicsContext)
+  if (!comicsData) return null
+  const { comics, isLoading, hasError, totalComics } = comicsData
 
-  const handleNextPage = () => {
-    if(offset > total) return
-    setOffset((currentOffset) => {
-      const newOffset = currentOffset + 16
-      sessionStorage.setItem('offset-comics', newOffset.toString())
-      return newOffset
-    })
-  }
-  const handlePrevPage = () => {
-    if(offset <= 0) return
-    setOffset((currentOffset) => {
-      const newOffset = currentOffset - 16
-      sessionStorage.setItem('offset-comics', newOffset.toString())
-      return newOffset
-    })
-    
-  }
   
   return (
     <MainLayout title='Comics'>
       <div className='comics-container'>
-        {comicsData?.isLoading && <div>Loading...</div>}
-        {comicsData?.hasError && <div>Something went wrong</div>}
-        {comicsData?.comics &&
-          comicsData.comics.map(comic => (
+        {isLoading && <div>Loading...</div>}
+        {hasError && <div>Something went wrong</div>}
+        {comics &&
+          comics.map(comic => (
             <ComicItem key={comic.id} comic={comic} />
           ))}
       </div>
-      <button onClick={handlePrevPage}>
-      {'<'}
-      </button>
-      <button onClick={handleNextPage}>
-        {'>'}
-      </button>
+      {comics && <Pagination name="comics" currentPage={offset} setOffset={setOffset} totalItems={totalComics} itemsPerPage={16} />}
     </MainLayout>
   )
 }
