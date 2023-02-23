@@ -1,22 +1,19 @@
-import { ComicsContext } from "@context/ComicsContext"
-import { MainLayout } from "@layouts/MainLayout"
-import { useContext } from "react"
+import { useEffect } from "react"
 import { Navigate, useParams } from "react-router-dom"
+import { getComicById } from "@helpers/getComicById"
+import { MainLayout } from "@layouts/MainLayout"
 
 export const ComicDetailPage = () => {
-
   const { comicId } = useParams()
 
-  const getComicById = (id: string) => {
-    const { comicsData } = useContext(ComicsContext)
-    if (!comicsData?.comics) return undefined
-    return comicsData?.comics.find(
-      comic => comic.id === Number(id)
-    )
-  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!comicId) return <Navigate to='/' />
   const comic = getComicById(comicId)
   if (!comic) return <Navigate to='/' />
+
   return (
     <MainLayout title={comic.title}>
       <div className='comic-detail'>

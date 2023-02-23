@@ -1,6 +1,14 @@
+import { CharactersContext } from "@context/CharactersContext"
+import { useContext } from "react"
 
-export function Footer () {
+export function Footer() {
+  
+  const { charactersData } = useContext(CharactersContext)
+  if (!charactersData) return null
+  const { attributionText } = charactersData
   return (
-    <div>Footer</div>
+    <footer>
+      <small>{attributionText}</small>
+    </footer>
   )
 }

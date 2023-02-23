@@ -5,7 +5,9 @@ const initialContext: CharactersContextType = {
   charactersData: {
     characters: null,
     hasError: null,
-    isLoading: true
+    isLoading: true,
+    attributionText: '',
+    totalCharacters: 0
   },
   offset: 0,
   setOffset: () => { },

@@ -247,6 +247,21 @@ img {
   color: #ffffff;
 }
 
+.page-not-found {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "Avengero", sans-serif;
+  gap: 1rem;
+  text-align: center;
+}
+.page-not-found h2 {
+  font-size: 3rem;
+  color: #ED1B24;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -311,6 +326,15 @@ header .nav-bar .active-link {
 footer {
   align-self: flex-end;
   justify-self: end;
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  background-image: linear-gradient(0deg, #000000, transparent);
+}
+footer small {
+  padding: 0.5rem;
 }
 
 .comic {

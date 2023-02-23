@@ -57,7 +57,8 @@ interface CharactersData {
   characters: Character[] | null
   hasError: string | null
   isLoading: boolean,
-  totalCharacters: number
+  totalCharacters: number,
+  attributionText: string
 }
 interface CharactersContextType {
   charactersData: CharactersData | null
