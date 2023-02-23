@@ -26,6 +26,7 @@
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@apis/*": ["src/apis/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@types": ["src/types"],
 
     }

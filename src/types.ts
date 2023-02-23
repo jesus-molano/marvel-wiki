@@ -56,11 +56,13 @@ enum CharacterType {
 interface CharactersData {
   characters: Character[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalCharacters: number,
+  attributionText: string
 }
 interface CharactersContextType {
   charactersData: CharactersData | null
-  offset: number
+  offset: number,
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -130,7 +132,8 @@ interface ComicSeries {
 interface ComicsData {
   comics: Comic[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalComics: number
 }
 interface ComicsContextType {
   comicsData: ComicsData | null
@@ -179,7 +182,8 @@ interface SerieItem {
 interface SeriesData {
   series: Serie[] | null
   hasError: string | null
-  isLoading: boolean
+  isLoading: boolean,
+  totalSeries: number
 }
 interface SeriesContextType {
   seriesData: SeriesData | null

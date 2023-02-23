@@ -48,9 +48,14 @@ header {
   }
 
   .nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     ul{
       display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
       flex-direction: row;
       justify-content: space-around;
       list-style: none;
@@ -59,6 +64,7 @@ header {
     }
 
     .nav-link {
+      font-size: 1.2rem;
       color: $color-text;
       font-weight: 700;
       &:hover {

@@ -5,12 +5,13 @@ const API_URL = import.meta.env.VITE_MARVEL_API_URL
 export const getComics = (limit: number = 16, offset: number = 0, orderBy: string = 'title') => {
   const url = `${API_URL}comics?orderBy=${orderBy}&limit=${limit}&offset=${offset}&apikey=${API_KEY}`
   const { data, hasError, isLoading } = useFetch(url)
-  
+  const totalComics = data?.data?.total
   const comics = data?.data?.results
   
   return {
     comics,
     hasError,
-    isLoading
+    isLoading,
+    totalComics
   }
 }

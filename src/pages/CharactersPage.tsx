@@ -2,45 +2,37 @@ import { useContext } from 'react'
 import { CharacterItem } from '@components/Characters/CharacterItem'
 import { CharactersContext } from '@context/CharactersContext'
 import { MainLayout } from '@layouts/MainLayout'
+import Pagination from '@components/Pagination'
+import { LoadingSpinner } from '@components/LoadingSpinner'
 
 export const CharactersPage = () => {
-  const total = 40
-  const { charactersData, offset, setOffset } = useContext(CharactersContext)
-  
-  const handleNextPage = () => {
-    if(offset > total) return
-    setOffset((currentOffset) => {
-      const newOffset = currentOffset + 10
-      sessionStorage.setItem('offset-characters', newOffset.toString())
-      return newOffset
-    })
-  }
-  const handlePrevPage = () => {
-    if(offset <= 0) return
-    setOffset((currentOffset) => {
-      const newOffset = currentOffset - 10
-      sessionStorage.setItem('offset-characters', newOffset.toString())
-      return newOffset
-    })
-    
-  }
+  const { charactersData, setOffset } = useContext(CharactersContext)
+
+  if (!charactersData) return null
+  const { characters, isLoading, hasError, totalCharacters } = charactersData
 
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
-        {charactersData?.isLoading && <div>Loading...</div>}
-        {charactersData?.hasError && <div>Something went wrong</div>}
-        {charactersData?.characters &&
-          charactersData.characters.map(character => (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : hasError ? (
+          <div>Something went wrong</div>
+        ) : (
+          characters &&
+          characters.map(character => (
             <CharacterItem key={character.id} character={character} />
-          ))}
+          ))
+        )}
       </div>
-      <button onClick={handlePrevPage}>
-      {'<'}
-      </button>
-      <button onClick={handleNextPage}>
-        {'>'}
-      </button>
+      {characters && (
+        <Pagination
+          totalItems={totalCharacters}
+          itemsPerPage={10}
+          setOffset={setOffset}
+          name='characters'
+        />
+      )}
     </MainLayout>
   )
 }

@@ -10,7 +10,9 @@ interface Props {
 const initialCharactersData: CharactersData = {
   characters: null,
   hasError: null,
-  isLoading: true
+  isLoading: true,
+  totalCharacters: 0,
+  attributionText: ''
 }
 
 const offsetStorage = sessionStorage.getItem('offset-characters')
@@ -21,7 +23,7 @@ export const CharactersProvider = ({ children }: Props) => {
   const [offset, setOffset] = useState(initialOffset)
   const [limit, setLimit] = useState(10)
 
-  const { characters, hasError, isLoading }: CharactersData = getCharacters(
+  const { characters, hasError, isLoading, totalCharacters, attributionText }: CharactersData = getCharacters(
     limit,
     offset
   )
@@ -30,7 +32,9 @@ export const CharactersProvider = ({ children }: Props) => {
     setCharactersData({
       characters,
       isLoading,
-      hasError
+      hasError,
+      totalCharacters,
+      attributionText
     })
   }, [offset, isLoading])
 
