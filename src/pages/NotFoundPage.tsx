@@ -3,7 +3,7 @@ import { MainLayout } from '@layouts/MainLayout'
 export const NotFoundPage = () => {
   return (
     <MainLayout>
-      <p>404</p>
+      <div className='page-not-found'>404 - Page not found</div>
     </MainLayout>
   )
 }

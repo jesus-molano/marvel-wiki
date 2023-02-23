@@ -1,4 +1,5 @@
 import { ComicItem } from '@components/Comics/ComicItem'
+import { LoadingSpinner } from '@components/LoadingSpinner'
 import Pagination from '@components/Pagination'
 import { ComicsContext } from '@context/ComicsContext'
 import { MainLayout } from '@layouts/MainLayout'
@@ -9,18 +10,27 @@ export const ComicsPage = () => {
   if (!comicsData) return null
   const { comics, isLoading, hasError, totalComics } = comicsData
 
-  
   return (
     <MainLayout title='Comics'>
       <div className='comics-container'>
-        {isLoading && <div>Loading...</div>}
-        {hasError && <div>Something went wrong</div>}
-        {comics &&
-          comics.map(comic => (
-            <ComicItem key={comic.id} comic={comic} />
-          ))}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : hasError ? (
+          <div>Something went wrong</div>
+        ) : (
+          comics &&
+          comics.map(comic => <ComicItem key={comic.id} comic={comic} />)
+        )}
       </div>
-      {comics && <Pagination name="comics" currentPage={offset} setOffset={setOffset} totalItems={totalComics} itemsPerPage={16} />}
+      {comics && (
+        <Pagination
+          name='comics'
+          currentPage={offset}
+          setOffset={setOffset}
+          totalItems={totalComics}
+          itemsPerPage={16}
+        />
+      )}
     </MainLayout>
   )
 }

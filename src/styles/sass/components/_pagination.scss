@@ -18,9 +18,9 @@
     transition: all 0.2s ease-in-out;
 
     &:hover{
-      background-color: $color-primary;
-      border-color: $color-secondary;
-      color: $color-text;
+      background-color: $color-complementary;
+      border-color: $color-emphasize;
+      color: $color-background;
     }
 
     &:disabled{
@@ -28,10 +28,10 @@
       cursor: not-allowed;
     }
 
-  }
-  .active {
-    background-color: $color-primary;
-    border-color: $color-secondary;
-    color: $color-text;
+    &.active{
+      background-color: $color-primary;
+      border-color: $color-secondary;
+      color: $color-text;
+    }
   }
 }

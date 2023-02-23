@@ -3,6 +3,7 @@ import { CharacterItem } from '@components/Characters/CharacterItem'
 import { CharactersContext } from '@context/CharactersContext'
 import { MainLayout } from '@layouts/MainLayout'
 import Pagination from '@components/Pagination'
+import { LoadingSpinner } from '@components/LoadingSpinner'
 
 export const CharactersPage = () => {
   const { charactersData, setOffset } = useContext(CharactersContext)
@@ -13,14 +14,25 @@ export const CharactersPage = () => {
   return (
     <MainLayout title='Characters'>
       <div className='characters-container'>
-        {isLoading && <div>Loading...</div>}
-        {hasError && <div>Something went wrong</div>}
-        {characters &&
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : hasError ? (
+          <div>Something went wrong</div>
+        ) : (
+          characters &&
           characters.map(character => (
             <CharacterItem key={character.id} character={character} />
-          ))}
+          ))
+        )}
       </div>
-      {characters && <Pagination totalItems={totalCharacters} itemsPerPage={10} setOffset={setOffset} name='characters' />}
+      {characters && (
+        <Pagination
+          totalItems={totalCharacters}
+          itemsPerPage={10}
+          setOffset={setOffset}
+          name='characters'
+        />
+      )}
     </MainLayout>
   )
 }
